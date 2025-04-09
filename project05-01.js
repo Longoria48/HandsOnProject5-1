@@ -27,6 +27,46 @@ let timeLeft = quizTime;
 // Declare the ID for timed commands
 // and the node list for questions
 
+//step3
+let timeID;
+//step 4
+let questionList = document.querySelectorAll("div#quiz input");
+
+//step 5
+startQuiz.onclick = function()
+{
+   overlay.className = "showquiz";
+   timeID = window.setInterval(countdown, 1000);
+}
+
+//step 6
+function countdown()
+{
+   if(timeLeft == 0)
+   {  
+      clearInterval(timeID); //6a
+      let totalCorrect = checkAnswers() //6b
+      
+      if(totalCorrect == correctAnswers.length)
+      {
+         window.alert('congrats! You got 100%')
+      }
+      else //step
+      {
+         window.alert('You answered correct' + totalCorrect + ' out of ' + correctAnswers.length + " questions");
+         timeLeft = quizTime;
+         quizClock.value = timeLeft;
+         overlay.className = "hidequiz";
+      }
+   }
+   else
+   {
+      timeLeft--;
+      quizClock.value = timeLeft;
+   }
+}
+
+
 
 
 
